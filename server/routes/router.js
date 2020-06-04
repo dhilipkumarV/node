@@ -1,7 +1,8 @@
+import home from './home';
+import healthCheck from './healthCheck';
 
 function router(app) {
-	app.get('/ping', (req, res) => {
-		res.status(200).send('pong');
-	});
+	app.get('/ping', healthCheck);
+	app.get('/', home);
 }
 export default router;
