@@ -1,0 +1,89 @@
+{
+  "api.version": "v1",
+  "sources": [
+    {
+      "name": "groot-prod-nginx-access",
+      "category": "prod/eks/groot/nginx/access",
+      "automaticDateParsing": true,
+      "multilineProcessingEnabled": true,
+      "useAutolineMatching": true,
+      "timeZone": "Asia/Kolkata",
+      "forceTimeZone": true,
+      "filters": [
+        {
+          "filterType": "Include",
+          "name": "nginxaccess",
+          "regexp": "(?s).*nginx-access.*(?s)"
+        },
+        {
+          "filterType": "Exclude",
+          "name": "elb-healthcheck",
+          "regexp": "(?s).*\\\"ELB-HealthChecker.*(?s)"
+        },
+        {
+          "filterType": "Exclude",
+          "name": "eks-healthcheck",
+          "regexp": ".*kube-probe.*"
+        }
+      ],
+      "cutoffTimestamp": 1548700200000,
+      "encoding": "UTF-8",
+      "pathExpression": "",
+      "blacklist": [
+
+      ],
+      "sourceType": "LocalFile"
+    },
+    {
+      "name": "groot-prod-common",
+      "category": "prod/eks/groot/common",
+      "automaticDateParsing": true,
+      "multilineProcessingEnabled": true,
+      "useAutolineMatching": true,
+      "timeZone": "Asia/Kolkata",
+      "forceTimeZone": true,
+      "filters": [
+       {
+          "filterType": "Exclude",
+          "name": "nginxaccess",
+          "regexp": "(?s).*nginx-access.*(?s)"
+        },
+       {
+          "filterType": "Exclude",
+          "name": "grootapp",
+          "regexp": "(?s).*groot app.*(?s)"
+        }
+      ],
+      "cutoffTimestamp": 1548700200000,
+      "encoding": "UTF-8",
+      "pathExpression": "",
+      "blacklist": [
+
+      ],
+      "sourceType": "LocalFile"
+    },
+    {
+      "name": "groot-prod-app",
+      "category": "prod/eks/groot/app",
+      "automaticDateParsing": true,
+      "multilineProcessingEnabled": true,
+      "useAutolineMatching": true,
+      "timeZone": "Asia/Kolkata",
+      "forceTimeZone": true,
+      "filters": [
+        {
+          "filterType": "Include",
+          "name": "grootapp",
+          "regexp": "(?s).*groot app.*(?s)"
+        }
+      ],
+      "cutoffTimestamp": 1548700200000,
+      "encoding": "UTF-8",
+      "pathExpression": "",
+      "blacklist": [
+
+      ],
+      "sourceType": "LocalFile"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+FROM centos:7
+
+RUN yum install -y wget epel-release && \
+	wget https://rpm.nodesource.com/pub_12.x/el/7/x86_64/nodejs-12.13.0-1nodesource.x86_64.rpm && \
+	rpm -ivh nodejs-12.13.0-1nodesource.x86_64.rpm  && \
+	yum -y install nodejs && \
+	yum install -y bzip2
+
+RUN yum install -y nginx python-setuptools && \
+  easy_install supervisor && \
+  rm -f /etc/localtime && \
+  ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && \
+  mkdir -p /var/log/supervisor /etc/supervisord.d /logs /var/log/nginx
+
+WORKDIR /usr/local/goibibo/crimson
+
+EXPOSE 80
+
+COPY ./package.json /usr/local/goibibo/crimson/package.json
+
+RUN npm install
